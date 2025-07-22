@@ -20,7 +20,7 @@ func ErrorHandler(err error, c echo.Context) {
 
 	if ae, ok := err.(*api.AppError); ok {
 		result.SetAppError(ae)
-		logger.Error().Stack().Err(ae).Str("message", ae.Message).Int("code", ae.Code).Msg("应用错误")
+		logger.Error().Stack().Err(ae).Str("message", ae.Message).Int("code", ae.Code).Msg("Application Error")
 	} else if he, ok := err.(*echo.HTTPError); ok {
 		code = he.Code
 		if he.Internal != nil {

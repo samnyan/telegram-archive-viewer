@@ -1,6 +1,8 @@
 package main
 
 import (
+	"flag"
+
 	"github.com/labstack/echo/v4"
 	"github.com/samnyan/go-telegram-archive/server/config"
 	"github.com/samnyan/go-telegram-archive/server/database"
@@ -9,7 +11,9 @@ import (
 )
 
 func main() {
-	conf := config.LoadConfig("config", "yaml")
+	configPath := flag.String("config", "conf/config.yaml", "Path to the config file")
+
+	conf := config.LoadConfig(configPath)
 
 	e := echo.New()
 

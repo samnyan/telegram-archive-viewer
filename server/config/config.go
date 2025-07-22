@@ -19,10 +19,10 @@ type Config struct {
 	}
 }
 
-func LoadConfig(configName string, configType string) *Config {
-	viper.SetConfigName(configName)
-	viper.SetConfigType(configType)
-	viper.AddConfigPath(".")
+func LoadConfig(configPath *string) *Config {
+	if configPath != nil && *configPath != "" {
+		viper.SetConfigFile(*configPath)
+	}
 
 	viper.SetDefault("server.port", "8080")
 
