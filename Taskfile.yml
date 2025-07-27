@@ -10,7 +10,19 @@ tasks:
     cmds:
       - echo "{{.ROOT_DIR}}"
     silent: true
-  oapigen:
+  server-oapigen:
     dir: "{{.ROOT_DIR}}/server"
     cmds:
       - go tool oapi-codegen -config ".\oapi-config.yaml" "..\api\openapi.yaml"
+  server:
+    dir: "{{.ROOT_DIR}}/server"
+    cmds:
+      - go run ".\cmd\main.go"
+  web:
+    dir: "{{.ROOT_DIR}}/web"
+    cmds:
+      - pnpm i && pnpm dev
+  web-oapigen:
+    dir: "{{.ROOT_DIR}}/web"
+    cmds:
+      - pnpm i && pnpm openapi-ts
