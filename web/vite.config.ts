@@ -15,20 +15,19 @@ export default defineConfig({
     vueDevTools(),
     UnoCSS(),
     AutoImport({
+      imports: ['vue', 'vue-router', 'pinia'],
       eslintrc: {
         enabled: true,
-        filepath: './.eslintrc-auto-import.json'
-      }
+        filepath: './.eslintrc-auto-import.json',
+      },
     }),
     Components({
-      resolvers: [
-        PrimeVueResolver()
-      ]
-    })
+      resolvers: [PrimeVueResolver()],
+    }),
   ],
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
 })

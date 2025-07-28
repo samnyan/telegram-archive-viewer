@@ -21,13 +21,13 @@ export default defineConfigWithVueTs(
   pluginVue.configs['flat/essential'],
   vueTsConfigs.recommended,
   skipFormatting,
-  {
-    languageOptions: {
-      globals: {
-        autoImportConfig
-      }
-    }
-  },
+  // {
+  //   languageOptions: {
+  //     globals: {
+  //       autoImportConfig
+  //     }
+  //   }
+  // },
   {
     rules: {
       'import/no-unresolved': [0],
@@ -54,6 +54,6 @@ export default defineConfigWithVueTs(
       'no-param-reassign': ['off'],
       '@typescript-eslint/no-extra-non-null-assertion': 'off',
       '@typescript-eslint/no-non-null-assertion': 'off',
-    }
-  }
+    },
+  },
 )

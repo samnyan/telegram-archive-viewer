@@ -9,6 +9,7 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     Chat: typeof import('./src/components/chat/Chat.vue')['default']
+    Chip: typeof import('primevue/chip')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     IconCommunity: typeof import('./src/components/icons/IconCommunity.vue')['default']
     IconDocumentation: typeof import('./src/components/icons/IconDocumentation.vue')['default']
@@ -16,8 +17,10 @@ declare module 'vue' {
     IconSupport: typeof import('./src/components/icons/IconSupport.vue')['default']
     IconTooling: typeof import('./src/components/icons/IconTooling.vue')['default']
     MessageList: typeof import('./src/components/chat/MessageList.vue')['default']
+    Panel: typeof import('primevue/panel')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    TextItem: typeof import('./src/components/chat/TextItem.vue')['default']
     TheWelcome: typeof import('./src/components/TheWelcome.vue')['default']
     VirtualScroller: typeof import('primevue/virtualscroller')['default']
     WelcomeItem: typeof import('./src/components/WelcomeItem.vue')['default']

@@ -347,7 +347,8 @@ components:
               text_entities:
                 type: array
                 description: List of text entities (e.g., bold, italic, links).
-                items: {}
+                items:
+                  $ref: '#/components/schemas/Telegram%20TextEntity'
             required:
               - id
               - type
@@ -360,6 +361,66 @@ components:
         - type
         - id
         - messages
+    Telegram TextEntity:
+      title: Telegram Text Entity Schema
+      description: >-
+        Schema for a single Telegram text entity, representing a formatted part
+        of a message.
+      type: object
+      properties:
+        type:
+          type: string
+          description: >-
+            Type of the text entity (e.g., 'plain', 'bold', 'italic',
+            'underline', 'strikethrough', 'text_link', 'spoiler', 'pre',
+            'blockquote', 'code', 'mention', 'phone', 'email', 'cashtag',
+            'bot_command', 'hashtag', 'url').
+          enum:
+            - plain
+            - bold
+            - italic
+            - underline
+            - strikethrough
+            - text_link
+            - spoiler
+            - pre
+            - blockquote
+            - code
+            - mention
+            - phone
+            - email
+            - cashtag
+            - bot_command
+            - hashtag
+            - url
+        text:
+          type: string
+          description: The text content of the entity.
+        href:
+          type: string
+          format: uri
+          description: URL for 'text_link' entities.
+          if:
+            properties:
+              type:
+                const: text_link
+        language:
+          type: string
+          description: Programming language for 'pre' (code block) entities.
+          if:
+            properties:
+              type:
+                const: pre
+        collapsed:
+          type: boolean
+          description: Indicates if a 'blockquote' is collapsed.
+          if:
+            properties:
+              type:
+                const: blockquote
+      required:
+        - type
+        - text
     ApiResult:
       type: object
       properties:

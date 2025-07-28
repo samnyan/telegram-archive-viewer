@@ -181,8 +181,35 @@ export type TelegramResult = {
         /**
          * List of text entities (e.g., bold, italic, links).
          */
-        text_entities: Array<unknown>;
+        text_entities: Array<TelegramTextEntity>;
     }>;
+};
+
+/**
+ * Telegram Text Entity Schema
+ * Schema for a single Telegram text entity, representing a formatted part of a message.
+ */
+export type TelegramTextEntity = {
+    /**
+     * Type of the text entity (e.g., 'plain', 'bold', 'italic', 'underline', 'strikethrough', 'text_link', 'spoiler', 'pre', 'blockquote', 'code', 'mention', 'phone', 'email', 'cashtag', 'bot_command', 'hashtag', 'url').
+     */
+    type: 'plain' | 'bold' | 'italic' | 'underline' | 'strikethrough' | 'text_link' | 'spoiler' | 'pre' | 'blockquote' | 'code' | 'mention' | 'phone' | 'email' | 'cashtag' | 'bot_command' | 'hashtag' | 'url';
+    /**
+     * The text content of the entity.
+     */
+    text: string;
+    /**
+     * URL for 'text_link' entities.
+     */
+    href?: string;
+    /**
+     * Programming language for 'pre' (code block) entities.
+     */
+    language?: string;
+    /**
+     * Indicates if a 'blockquote' is collapsed.
+     */
+    collapsed?: boolean;
 };
 
 export type ApiResult = {
