@@ -1,25 +1,385 @@
-openapi: "3.0.0"
+openapi: 3.0.1
 info:
+  title: GoTGArchive
+  description: ''
   version: 1.0.0
-  title: Minimal ping API server
+tags: []
 paths:
-  /ping:
-    get:
+  /auth/login:
+    post:
+      summary: Login
+      deprecated: false
+      description: ''
+      tags: []
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+              required:
+                - username
+                - password
       responses:
-        "200":
-          description: pet response
+        '200':
+          description: ''
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Pong"
+                type: object
+                properties:
+                  code:
+                    type: integer
+                  message:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      token:
+                        type: string
+                    required:
+                      - token
+                required:
+                  - code
+                  - message
+                  - data
+          headers: {}
+      security: []
+  /data/import/local:
+    post:
+      summary: Import Local File
+      deprecated: false
+      description: ''
+      tags: []
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                path:
+                  type: string
+                  description: Local file path
+              required:
+                - path
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+          headers: {}
+      security: []
+  /data/import/upload:
+    post:
+      summary: Import Upload File
+      deprecated: false
+      description: ''
+      tags: []
+      parameters: []
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  format: binary
+                  type: string
+                  example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+          headers: {}
+      security: []
 components:
   schemas:
-    # base types
-    Pong:
+    LoginResponse:
       type: object
-      required:
-        - ping
       properties:
-        ping:
+        code:
+          type: integer
+        message:
           type: string
-          example: pong
+        data:
+          type: object
+          properties:
+            token:
+              type: string
+          required:
+            - token
+      required:
+        - code
+        - message
+        - data
+    TelegramResult:
+      title: Telegram Chat Takeout Schema
+      description: >-
+        Schema for Telegram chat takeout data, including messages and chat
+        information.
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the chat (e.g., channel name, group name, or contact name).
+        type:
+          type: string
+          description: >-
+            Type of the chat (e.g., 'public_channel', 'private_chat',
+            'bot_chat', 'private_channel', 'supergroup').
+          enum:
+            - public_channel
+            - private_chat
+            - bot_chat
+            - private_channel
+            - supergroup
+        id:
+          type: integer
+          description: Unique identifier for the chat.
+        messages:
+          type: array
+          description: List of messages in the chat.
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+                description: Unique identifier for the message.
+              type:
+                type: string
+                description: Type of the message (e.g., 'message', 'service').
+                enum:
+                  - message
+                  - service
+              date:
+                type: string
+                format: date-time
+                description: Date and time when the message was sent in ISO 8601 format.
+              date_unixtime:
+                type: string
+                description: >-
+                  Date and time when the message was sent in Unix timestamp
+                  format (string representation).
+              actor:
+                type: string
+                description: >-
+                  Name of the actor performing a service action (e.g., channel
+                  name, user name).
+                if:
+                  parentSchema:
+                    properties:
+                      type:
+                        const: service
+              actor_id:
+                type: string
+                description: >-
+                  ID of the actor performing a service action (e.g.,
+                  'channel<id>', 'user<id>').
+                if:
+                  parentSchema:
+                    properties:
+                      type:
+                        const: service
+              action:
+                type: string
+                description: >-
+                  Type of service action (e.g., 'create_channel',
+                  'group_call_scheduled', 'group_call').
+                if:
+                  parentSchema:
+                    properties:
+                      type:
+                        const: service
+              title:
+                type: string
+                description: >-
+                  Title of the chat, relevant for 'create_channel' service
+                  messages.
+              from:
+                type: string
+                description: Name of the sender.
+                if:
+                  parentSchema:
+                    properties:
+                      type:
+                        const: message
+              from_id:
+                type: string
+                description: ID of the sender (e.g., 'channel<id>', 'user<id>').
+                if:
+                  parentSchema:
+                    properties:
+                      type:
+                        const: message
+              file:
+                type: string
+                description: Path to the attached file.
+              file_name:
+                type: string
+                description: Original name of the attached file.
+              file_size:
+                type: integer
+                description: Size of the attached file in bytes.
+              mime_type:
+                type: string
+                description: MIME type of the attached file.
+              thumbnail:
+                type: string
+                description: Path to the thumbnail file.
+              thumbnail_file_size:
+                type: integer
+                description: Size of the thumbnail file in bytes.
+              photo:
+                type: string
+                description: Path to the photo file.
+              photo_file_size:
+                type: integer
+                description: Size of the photo file in bytes.
+              width:
+                type: integer
+                description: Width of the media (photo, video, sticker, animation).
+              height:
+                type: integer
+                description: Height of the media (photo, video, sticker, animation).
+              media_type:
+                type: string
+                description: >-
+                  Specific type of media (e.g., 'video_file', 'voice_message',
+                  'sticker', 'animation').
+              duration_seconds:
+                type: integer
+                description: >-
+                  Duration of the media in seconds (video, voice_message,
+                  animation).
+              sticker_emoji:
+                type: string
+                description: Emoji associated with the sticker.
+              media_spoiler:
+                type: boolean
+                description: Indicates if the media is hidden behind a spoiler.
+              poll:
+                type: object
+                description: Details of a poll.
+                properties:
+                  question:
+                    type: string
+                    description: The question of the poll.
+                  closed:
+                    type: boolean
+                    description: Indicates if the poll is closed.
+                  total_voters:
+                    type: integer
+                    description: Total number of voters in the poll.
+                  answers:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        text:
+                          type: string
+                          description: Text of the answer option.
+                        voters:
+                          type: integer
+                          description: Number of voters for this answer option.
+                        chosen:
+                          type: boolean
+                          description: Indicates if the current user chose this answer.
+                      required:
+                        - text
+                        - voters
+                        - chosen
+                required:
+                  - question
+                  - closed
+                  - total_voters
+                  - answers
+              location_information:
+                type: object
+                description: Geographical location information.
+                properties:
+                  latitude:
+                    type: number
+                    format: float
+                    description: Latitude of the location.
+                  longitude:
+                    type: number
+                    format: float
+                    description: Longitude of the location.
+                required:
+                  - latitude
+                  - longitude
+              schedule_date:
+                type: integer
+                description: >-
+                  Unix timestamp of the scheduled date, for
+                  'group_call_scheduled' service messages.
+              duration:
+                type: integer
+                description: >-
+                  Duration of a group call in seconds, for 'group_call' service
+                  messages.
+              text:
+                oneOf:
+                  - type: string
+                    description: The text content of the message.
+                  - type: array
+                    description: >-
+                      Array representing rich text content, combining plain text
+                      and formatted entities.
+                    items:
+                      oneOf:
+                        - type: string
+                          description: Plain text part of the message.
+                        - {}
+              text_entities:
+                type: array
+                description: List of text entities (e.g., bold, italic, links).
+                items: {}
+            required:
+              - id
+              - type
+              - date
+              - date_unixtime
+              - text
+              - text_entities
+      required:
+        - name
+        - type
+        - id
+        - messages
+    ApiResult:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        data:
+          nullable: true
+          oneOf:
+            - type: string
+            - type: integer
+            - type: boolean
+            - type: array
+            - type: object
+            - type: number
+      required:
+        - code
+        - message
+        - data
+  securitySchemes: {}
+servers: []
+security: []
