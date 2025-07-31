@@ -25,6 +25,7 @@
     "@primevue/auto-import-resolver": "^4.3.6",
     "@tsconfig/node22": "^22.0.2",
     "@types/node": "^22.15.32",
+    "@unocss/preset-wind4": "^66.3.3",
     "@vitejs/plugin-vue": "^6.0.0",
     "@vue/eslint-config-prettier": "^10.2.0",
     "@vue/eslint-config-typescript": "^14.5.1",
