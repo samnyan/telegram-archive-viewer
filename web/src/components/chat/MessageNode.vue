@@ -2,6 +2,7 @@
 import type { TelegramResult } from '@/client'
 import type { PropType } from 'vue'
 import TextItem from '@/components/chat/TextItem.vue'
+import { $filters } from '@/utils/filters.ts'
 
 type TelegramMessageType = TelegramResult['messages'][number]
 
@@ -15,7 +16,7 @@ const props = defineProps({
 
 <template>
   <div
-    class="box-border message m-2 p-2 w-fit border-rounded-lg dark:bg-neutral-800 bg-neutral-100"
+    class="message box-border m-2 py-2 px-3 w-fit flex flex-col border-rounded-lg dark:bg-neutral-800 bg-neutral-100"
   >
     <div class="from_name">
       {{ message.from }}
@@ -24,8 +25,8 @@ const props = defineProps({
       <TextItem v-for="(i, idx) in message.text_entities" :key="idx" :text="i" />
     </div>
 
-    <div>
-      {{ message.date }}
+    <div class="ml-a opacity-50 text-sm" :title="$filters.formatDate(message.date)">
+      {{ $filters.formatTimeOnly(message.date) }}
     </div>
   </div>
 </template>
