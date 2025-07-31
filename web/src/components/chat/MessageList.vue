@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { type PropType, ref } from 'vue'
 import type { TelegramResult } from '@/client'
-import TextItem from '@/components/chat/TextItem.vue'
+import MessageNode from '@/components/chat/MessageNode.vue'
 
 const props = defineProps({
   chat: {
@@ -27,22 +27,10 @@ const props = defineProps({
           style="width: 100%; height: calc(100vh - 32px)"
         >
           <template v-slot:item="{ item }">
-            <div class="w-full">
-              <div>
-                {{ item.date }}
-              </div>
-              <div v-if="item.type == 'service'">
-                <Chip label="Action" />
-              </div>
-              <div v-if="item.type == 'message'">
-                <div>
-                  {{ item.from }}
-                </div>
-                <div v-if="item.text_entities">
-                  <TextItem v-for="(i, idx) in item.text_entities" :key="idx" :text="i" />
-                </div>
-              </div>
+            <div v-if="item.type == 'service'" class="w-full flex justify-center my-2">
+              <Chip label="Action" />
             </div>
+            <MessageNode v-if="item.type == 'message'" :message="item" />
           </template>
         </VirtualScroller>
       </div>

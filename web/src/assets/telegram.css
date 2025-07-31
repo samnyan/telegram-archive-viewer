@@ -1,0 +1,39 @@
+.message .from_name {
+  color: #3892db;
+  font-weight: 700;
+  padding-bottom: 5px;
+}
+
+.message .text {
+  word-wrap: break-word;
+  line-height: 150%;
+  unicode-bidi: plaintext;
+  text-align: start;
+}
+
+.message .spoiler.spoiler-hidden {
+  background: #a9a9a9;
+  cursor: pointer;
+  border-radius: 3px;
+}
+.message .pre {
+  display: block;
+  margin: 0;
+  line-height: 1.42857143;
+  word-break: break-all;
+  word-wrap: break-word;
+  color: #333;
+  background-color: #f5f5f5;
+  border-radius: 4px;
+  overflow: auto;
+  padding: 3px;
+  border: 1px solid #eee;
+  max-height: none;
+  font-size: inherit;
+}
+.message .blockquote {
+  padding: 1px 0;
+  padding-inline: .5625rem 1.125rem;
+  margin: 2px 0;
+  display: inline-block;
+}
