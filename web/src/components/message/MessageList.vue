@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { type PropType, ref } from 'vue'
 import type { TelegramResult } from '@/client'
-import MessageNode from '@/components/chat/MessageNode.vue'
+import MessageNode from '@/components/message/MessageNode.vue'
 
 const props = defineProps({
   chat: {

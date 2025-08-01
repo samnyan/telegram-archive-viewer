@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { TelegramResult } from '@/client'
 import type { PropType } from 'vue'
-import TextItem from '@/components/chat/TextItem.vue'
+import TextItem from '@/components/message/TextItem.vue'
 import { $filters } from '@/utils/filters.ts'
 
 type TelegramMessageType = TelegramResult['messages'][number]

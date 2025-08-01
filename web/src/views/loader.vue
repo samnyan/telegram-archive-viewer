@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import MessageList from '@/components/chat/MessageList.vue'
-import type { TelegramResult } from '@/client'
 import { ref } from 'vue'
+import type { TelegramResult } from '@/client'
 
 const currentChat = ref<TelegramResult>()
 
@@ -18,21 +17,11 @@ const onFileChange = (ev: any) => {
 </script>
 
 <template>
-  <div>
-    <!--  Chat list -->
-    <div></div>
-    <!--  Message list -->
+  <Panel header="Message Loader">
     <div>
-      <MessageList v-if="currentChat" :chat="currentChat" />
-      <div v-else class="p-2">
-        <Panel header="Message Loader">
-          <div>
-            <input type="file" id="input" @change="onFileChange" />
-          </div>
-        </Panel>
-      </div>
+      <input type="file" id="input" @change="onFileChange" />
     </div>
-  </div>
+  </Panel>
 </template>
 
 <style scoped></style>

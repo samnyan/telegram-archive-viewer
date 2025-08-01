@@ -1,9 +1,7 @@
-<script setup lang="ts">
-import Chat from '@/components/chat/Chat.vue'
-</script>
+<script setup lang="ts"></script>
 
 <template>
-  <main>
-    <Chat />
-  </main>
+  <div class="w-full h-full flex justify-center items-center">
+    <div>Select a chat</div>
+  </div>
 </template>

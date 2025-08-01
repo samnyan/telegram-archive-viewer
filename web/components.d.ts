@@ -8,7 +8,7 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
-    Chat: typeof import('./src/components/chat/Chat.vue')['default']
+    Chat: typeof import('./src/components/Chat.vue')['default']
     Chip: typeof import('primevue/chip')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     IconCommunity: typeof import('./src/components/icons/IconCommunity.vue')['default']
@@ -18,12 +18,12 @@ declare module 'vue' {
     IconTooling: typeof import('./src/components/icons/IconTooling.vue')['default']
     Message: typeof import('./src/components/chat/Message.vue')['default']
     MessageItem: typeof import('./src/components/chat/MessageItem.vue')['default']
-    MessageList: typeof import('./src/components/chat/MessageList.vue')['default']
-    MessageNode: typeof import('./src/components/chat/MessageNode.vue')['default']
+    MessageList: typeof import('./src/components/message/MessageList.vue')['default']
+    MessageNode: typeof import('./src/components/message/MessageNode.vue')['default']
     Panel: typeof import('primevue/panel')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    TextItem: typeof import('./src/components/chat/TextItem.vue')['default']
+    TextItem: typeof import('./src/components/message/TextItem.vue')['default']
     TheWelcome: typeof import('./src/components/TheWelcome.vue')['default']
     VirtualScroller: typeof import('primevue/virtualscroller')['default']
     WelcomeItem: typeof import('./src/components/WelcomeItem.vue')['default']
