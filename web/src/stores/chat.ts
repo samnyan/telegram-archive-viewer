@@ -28,7 +28,7 @@ export const useChatStore = defineStore('chat', () => {
     return chats.value.map((i) => {
       return {
         id: i.id,
-        name: i.name,
+        name: i.type && i.type == 'saved_messages' ? 'Saved Messages' : i.name,
       }
     })
   })

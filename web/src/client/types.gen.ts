@@ -20,7 +20,7 @@ export type TelegramResult = {
     /**
      * Type of the chat (e.g., 'public_channel', 'private_chat', 'bot_chat', 'private_channel', 'supergroup').
      */
-    type: 'public_channel' | 'private_chat' | 'bot_chat' | 'private_channel' | 'supergroup';
+    type: 'public_channel' | 'private_chat' | 'bot_chat' | 'private_channel' | 'supergroup' | 'saved_messages';
     /**
      * Unique identifier for the chat.
      */

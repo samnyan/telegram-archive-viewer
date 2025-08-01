@@ -146,6 +146,7 @@ components:
             - bot_chat
             - private_channel
             - supergroup
+            - saved_messages
         id:
           type: integer
           description: Unique identifier for the chat.
