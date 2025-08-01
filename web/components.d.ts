@@ -9,6 +9,7 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     Avatar: typeof import('primevue/avatar')['default']
+    Button: typeof import('primevue/button')['default']
     Chat: typeof import('./src/components/Chat.vue')['default']
     ChatItem: typeof import('./src/components/chat/ChatItem.vue')['default']
     ChatList: typeof import('./src/components/chat/ChatList.vue')['default']
@@ -20,6 +21,8 @@ declare module 'vue' {
     IconEcosystem: typeof import('./src/components/icons/IconEcosystem.vue')['default']
     IconSupport: typeof import('./src/components/icons/IconSupport.vue')['default']
     IconTooling: typeof import('./src/components/icons/IconTooling.vue')['default']
+    InputText: typeof import('primevue/inputtext')['default']
+    Menu: typeof import('primevue/menu')['default']
     Message: typeof import('./src/components/chat/Message.vue')['default']
     MessageItem: typeof import('./src/components/chat/MessageItem.vue')['default']
     MessageList: typeof import('./src/components/message/MessageList.vue')['default']
