@@ -1,8 +1,18 @@
-# Go Telegram Archive
+# Telegram Archive Viewer
 
-A Telegram Takeout manager and viewer.
+A Telegram Takeout viewer and hosting server.
+Import all your chat history into a searchable database.
 
 # Features
+
+## Frontend
+
+- [x] Load and view json format takeout data.
+- [x] Basic text message styling support.
+- [ ] Media preview.
+- [ ] Json message uploader.
+
+## Server
 
 - [ ] Import json format takeout data.
 - [ ] Message viewer frontend.
