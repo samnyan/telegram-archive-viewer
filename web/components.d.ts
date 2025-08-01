@@ -32,6 +32,7 @@ declare module 'vue' {
     RouterView: typeof import('vue-router')['RouterView']
     TextItem: typeof import('./src/components/message/TextItem.vue')['default']
     TheWelcome: typeof import('./src/components/TheWelcome.vue')['default']
+    Toast: typeof import('primevue/toast')['default']
     VirtualScroller: typeof import('primevue/virtualscroller')['default']
     WelcomeItem: typeof import('./src/components/WelcomeItem.vue')['default']
   }

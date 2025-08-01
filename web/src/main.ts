@@ -10,6 +10,7 @@ import PrimeVue from 'primevue/config'
 import App from './App.vue'
 import router from './router'
 import { Noir } from '@/theme.ts'
+import { ToastService } from 'primevue'
 
 const app = createApp(App)
 
@@ -24,5 +25,6 @@ app.use(PrimeVue, {
     },
   },
 })
+app.use(ToastService)
 
 app.mount('#app')

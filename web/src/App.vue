@@ -4,6 +4,8 @@ import Chat from '@/components/Chat.vue'
 
 <template>
   <Chat />
+
+  <Toast />
 </template>
 
 <style scoped></style>
