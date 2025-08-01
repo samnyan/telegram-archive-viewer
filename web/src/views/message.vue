@@ -1,13 +1,12 @@
 <script setup lang="ts">
 import MessageList from '@/components/message/MessageList.vue'
-import { ref } from 'vue'
-import type { TelegramResult } from '@/client'
+import { useChatStore } from '@/stores/chat.ts'
 
-const currentChat = ref<TelegramResult>()
+const chatStore = useChatStore()
 </script>
 
 <template>
-  <MessageList v-if="currentChat" :chat="currentChat" />
+  <MessageList v-if="chatStore.currentChat" :chat="chatStore.currentChat" />
 </template>
 
 <style scoped></style>
