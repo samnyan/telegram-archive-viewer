@@ -8,7 +8,11 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    Avatar: typeof import('primevue/avatar')['default']
     Chat: typeof import('./src/components/Chat.vue')['default']
+    ChatItem: typeof import('./src/components/chat/ChatItem.vue')['default']
+    ChatList: typeof import('./src/components/chat/ChatList.vue')['default']
+    ChatToolbar: typeof import('./src/components/chat/ChatToolbar.vue')['default']
     Chip: typeof import('primevue/chip')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     IconCommunity: typeof import('./src/components/icons/IconCommunity.vue')['default']
