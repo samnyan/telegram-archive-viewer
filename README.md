@@ -11,11 +11,12 @@ Import all your chat history into a searchable database.
 - [x] Basic text message styling support.
 - [ ] Media preview.
 - [ ] Json message uploader.
+- [ ] Gallery view for media.
 
 ## Server
 
 - [ ] Import json format takeout data.
-- [ ] Message viewer frontend.
+- [ ] Local file import.
 - [ ] Media file deduplication.
 - [ ] Fuzzy search history.
 
