@@ -25,7 +25,11 @@ watch(
 const loadImage = async () => {
   if (props.photo) {
     const resp = await chatStore.getMedia(props.photo)
-    imgSrc.value = resp
+    if (resp) {
+      imgSrc.value = resp
+    } else {
+      imgSrc.value = undefined
+    }
   } else {
     imgSrc.value = undefined
   }

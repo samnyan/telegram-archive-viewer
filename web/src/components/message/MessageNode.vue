@@ -4,6 +4,7 @@ import type { PropType } from 'vue'
 import TextItem from '@/components/message/TextItem.vue'
 import { $filters } from '@/utils/filters.ts'
 import PhotoItem from '@/components/message/PhotoItem.vue'
+import MediaItem from '@/components/message/MediaItem.vue'
 
 type TelegramMessageType = TelegramResult['messages'][number]
 
@@ -28,8 +29,20 @@ const props = defineProps({
     <div v-if="message.photo">
       <PhotoItem :photo="message.photo" />
     </div>
+    <div v-else-if="message.file">
+      <MediaItem
+        :media-type="message.media_type"
+        :thumbnail="message.thumbnail"
+        :sticker-emoji="message.sticker_emoji"
+        :file="message.file"
+        :mime-type="message.mime_type"
+      />
+    </div>
+    <div v-else-if="message.thumbnail">
+      <PhotoItem :photo="message.thumbnail" />
+    </div>
 
-    <div class="ml-a opacity-50 text-sm" :title="$filters.formatDate(message.date)">
+    <div class="mt-2 ml-a opacity-50 text-sm" :title="$filters.formatDate(message.date)">
       {{ $filters.formatTimeOnly(message.date) }}
     </div>
   </div>
