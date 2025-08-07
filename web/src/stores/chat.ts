@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
 import type { TelegramResult } from '@/client/types.gen'
+import { loadDataUrlAsync } from '@/utils/file.ts'
 
 export interface ChatInfo {
   id: number
@@ -13,6 +14,7 @@ export const useChatStore = defineStore('chat', () => {
   // State
   const chats = ref<TelegramResult[]>([])
   const currentChatId = ref<number | null>(null)
+  const mediaFileMap = ref<Map<string, File>>()
 
   // Getters
   const currentChat = computed(() => {
@@ -62,6 +64,18 @@ export const useChatStore = defineStore('chat', () => {
     currentChatId.value = null
   }
 
+  const loadFileMap = (m: Map<string, File>) => {
+    mediaFileMap.value = m
+  }
+
+  const getMedia = async (path: string) => {
+    if (!mediaFileMap.value) return null
+    const f = mediaFileMap.value.get(path)
+    if (!f) return null
+
+    return await loadDataUrlAsync(f)
+  }
+
   return {
     // State
     chats,
@@ -77,5 +91,7 @@ export const useChatStore = defineStore('chat', () => {
     removeChat,
     setCurrentChat,
     clearChats,
+    loadFileMap,
+    getMedia,
   }
 })

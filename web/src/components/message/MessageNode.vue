@@ -3,6 +3,7 @@ import type { TelegramResult } from '@/client'
 import type { PropType } from 'vue'
 import TextItem from '@/components/message/TextItem.vue'
 import { $filters } from '@/utils/filters.ts'
+import PhotoItem from '@/components/message/PhotoItem.vue'
 
 type TelegramMessageType = TelegramResult['messages'][number]
 
@@ -23,6 +24,9 @@ const props = defineProps({
     </div>
     <div v-if="message.text_entities" class="text">
       <TextItem v-for="(i, idx) in message.text_entities" :key="idx" :text="i" />
+    </div>
+    <div v-if="message.photo">
+      <PhotoItem :photo="message.photo" />
     </div>
 
     <div class="ml-a opacity-50 text-sm" :title="$filters.formatDate(message.date)">
